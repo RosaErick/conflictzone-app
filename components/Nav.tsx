@@ -2,6 +2,7 @@ import MobileNav from "./MobileNav";
 import ThemeSwitch from "./ThemeSwitch";
 import Link from "next/link";
 import headerNavLinks from "@/data/headerNavLinks";
+import { ModeToggle } from "./ModeToggle";
 
 const Nav = () => {
   return (
@@ -27,6 +28,7 @@ const Nav = () => {
           ))}
 
         <ThemeSwitch />
+        <ModeToggle />
         <MobileNav />
       </div>
     </header>
