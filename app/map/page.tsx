@@ -1,4 +1,4 @@
-import Heatmap from "../components/heatmap";
+import Heatmap from "../../components/heatmap";
 
 export type OccurrenceData = {
   occurrence_id: string;
