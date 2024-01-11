@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const date = new Date();
+
 const Footer: React.FC = () => {
   return (
     <footer>

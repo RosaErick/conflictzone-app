@@ -1,6 +1,4 @@
-import Nav from "@/components/nav";
-import Heatmap from "../../components/heatmap";
-import Footer from "@/components/footer";
+import Heatmap from "../../components/Heatmap";
 
 export type OccurrenceData = {
   occurrence_id: string;
