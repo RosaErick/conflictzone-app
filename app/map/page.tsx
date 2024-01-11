@@ -9,7 +9,7 @@ export type OccurrenceData = {
 };
 
 type HeatmapProps = {
-  data: OccurrenceData[]; // Array of OccurrenceData objects
+  data: OccurrenceData[]; 
 };
 
 async function getData(): Promise<OccurrenceData[]> {
