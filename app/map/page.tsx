@@ -1,4 +1,6 @@
+import Nav from "@/components/nav";
 import Heatmap from "../../components/heatmap";
+import Footer from "@/components/footer";
 
 export type OccurrenceData = {
   occurrence_id: string;
@@ -9,7 +11,7 @@ export type OccurrenceData = {
 };
 
 type HeatmapProps = {
-  data: OccurrenceData[]; 
+  data: OccurrenceData[];
 };
 
 async function getData(): Promise<OccurrenceData[]> {
@@ -41,17 +43,5 @@ export default async function Page() {
 
   console.log(occurrences);
 
-  return (
-    <main>
-      <nav className="flex flex-wrap items-center justify-between gap-4 sm:flex-nowrap md:gap-8">
-        test
-        <div className="ml-auto hidden max-w-sm flex-1 sm:block">x</div>
-        <div className="flex items-center gap-10"></div>
-        <div className="block w-full sm:hidden">{}</div>
-      </nav>
-      <ul>
-        <Heatmap data={occurrences} />
-      </ul>
-    </main>
-  );
+  return <Heatmap data={occurrences} />;
 }
