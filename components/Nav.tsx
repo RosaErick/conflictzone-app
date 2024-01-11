@@ -9,7 +9,7 @@ const Nav = () => {
       <div>
         <Link href="/">
           <div className="flex items-center justify-between">
-            <p className="mr-3 font-bold">PatrolAnlytics</p>
+            <p className="mr-3 font-bold">PatrolAnalytics</p>
           </div>
         </Link>
       </div>
