@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/ Footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,7 +37,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: {
@@ -45,22 +45,25 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="antialiased max-w-3xl mb-40 flex flex-col md:flex-row mx-4  lg:mx-auto">
-            <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-              <Nav />
+  
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            
+            <div className="antialiased max-w-3xl mb-40 flex flex-col md:flex-row mx-4  lg:mx-auto">
+              <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+                <Nav />
 
-              {children}
+                {children}
 
-              <Footer />
-            </main>
-          </div>
-        </ThemeProvider>
+                <Footer />
+              </main>
+            </div>
+          </ThemeProvider>
+
       </body>
     </html>
   );
