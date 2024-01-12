@@ -64,10 +64,11 @@ export const useFilteredData = () => {
       console.log("data1", data);
 
       return data.occurrences as OccurrenceData[];
-    }
+    },
+    { revalidateOnFocus: false, revalidateOnReconnect: false }
   );
 
   console.log("data", data);
 
-  return { data: data.data, loading: data.isValidating }
+  return { data: data.data, loading: data.isValidating };
 };

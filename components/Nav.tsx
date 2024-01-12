@@ -27,7 +27,7 @@ const Nav = () => {
             </Link>
           ))}
 
-        <ThemeSwitch />
+        {/* <ThemeSwitch /> */}
         <ModeToggle />
         <MobileNav />
       </div>
