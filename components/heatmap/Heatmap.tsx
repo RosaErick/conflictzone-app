@@ -2,7 +2,7 @@
 
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import React, { useEffect, useState } from "react";
-import { OccurrenceData } from "../app/map/page";
+import { OccurrenceData } from "../../app/map/page";
 
 type LatLngWeight = any;
 

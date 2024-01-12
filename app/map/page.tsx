@@ -1,10 +1,6 @@
 "use client";
-import { FilterForm } from "@/components/filterform/FilterForm";
-import Heatmap from "../../components/Heatmap";
 import { FilterProvider } from "@/components/filterform/provider";
-import { useFilteredData } from "@/hooks/useFilterData";
-import { Progress } from "@/components/ui/progress";
-import { ProgressLoadingMap } from "@/components/PogressLoadingMap";
+import HeatmapContainer from "@/components/heatmap/HeatmapContainer";
 
 export type OccurrenceData = {
   occurrence_id: string;
@@ -43,20 +39,9 @@ async function getData(): Promise<OccurrenceData[]> {
 }
 
 export default function Page() {
-  const { data: occurrences, loading } = useFilteredData();
-
-  console.log(occurrences);
-
   return (
-    <>
-      <FilterProvider>
-        <FilterForm />
-        {loading ? (
-          <ProgressLoadingMap loading={loading} />
-        ) : (
-          <Heatmap data={occurrences || []} />
-        )}
-      </FilterProvider>
-    </>
+    <FilterProvider>
+      <HeatmapContainer />
+    </FilterProvider>
   );
 }

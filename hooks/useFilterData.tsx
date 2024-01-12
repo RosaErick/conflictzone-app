@@ -13,62 +13,56 @@ interface OccurrenceData {
   weight?: number;
 }
 
-export const useFilteredData = () => {
-  const { filters } = { filters: useFilter() };
+interface FilterValues {
+  startDate: string;
+  endDate: string;
+  mainReason: string;
+}
 
-  //   return useQuery<OccurrenceData[], Error>({
-  //     queryKey:['occurrences'], // This is the queryKey
-  //     queryFn: async () => {
-  //       // Here, you can construct the query string based on the filters
-  //       const queryParams = new URLSearchParams(filters as any).toString();
-  //       const response = await fetch(
-  //         `http://localhost:8001/fogo_cruzado/occurrences/?${queryParams}`,
-  //         {
-  //           method: 'GET',
-  //           headers: {
-  //             'Content-Type': 'application/json',
-  //           },
-  //         }
-  //       );
+export const useFilteredData = (
+  filters: FilterValues = {
+    startDate: "",
+    endDate: "",
+    mainReason: "",
+  }
+) => {
+  
 
-  //       if (!response.ok) {
-  //         throw new Error(`Error fetching data: ${response.statusText}`);
-  //       }
+  const fetcher = async (url: string) => {
+    const queryParams = new URLSearchParams(filters as any).toString();
 
-  //       const data = await response.json();
-
-  //       return data.occurrences as OccurrenceData[];
-  //     },
-
-  //same request using swr
-
-  const [loading, setLoading] = useState(false);
-
-  const queryParams = new URLSearchParams(filters as any).toString();
-  const data = useSWR(
-    `http://localhost:8001/fogo_cruzado/occurrences/?`,
-    async (url) => {
-      const response = await fetch(url, {
+    console.log("filters", filters);
+    console.log("queryParams", queryParams);
+    const response = await fetch(
+      `http://localhost:8001/fogo_cruzado/occurrences/?${queryParams}`,
+      {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-      });
-
-      if (!response.ok) {
-        throw new Error(`Error fetching data: ${response.statusText}`);
       }
+    );
 
-      const data = await response.json();
+    if (!response.ok) {
+      throw new Error(`Error fetching data: ${response.statusText}`);
+    }
 
-      console.log("data1", data);
+    const data = await response.json();
+    return data.occurrences as OccurrenceData[];
+  };
 
-      return data.occurrences as OccurrenceData[];
-    },
+  const data = useSWR(
+    `http://localhost:8001/fogo_cruzado/occurrences/`,
+    fetcher,
     { revalidateOnFocus: false, revalidateOnReconnect: false }
   );
 
   console.log("data", data);
 
-  return { data: data.data, loading: data.isValidating };
+  return {
+    data: data.data,
+    loading: data.isValidating,
+    error: data.error,
+    refetch: data.mutate,
+  };
 };

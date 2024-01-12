@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,8 +18,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useFilter } from "./provider";
+import { useFilteredData } from "@/hooks/useFilterData";
 
 export function FilterForm() {
+  const { updateFilter, filters } = useFilter();
+  const { refetch } = useFilteredData(filters);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(e);
+    console.log("filters before refetch", filters);
+    refetch();
+  };
+
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -28,17 +40,29 @@ export function FilterForm() {
           Escolha como deseja visualizar os dados
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <form>
+      <form onSubmit={handleSubmit}>
+        <CardContent>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="Date">Data</Label>
-              <Input id="name" type="date" placeholder="Data Inicial" />
-              <Input id="name" type="date" placeholder="Data Final" />
+              <Input
+                id="startDate"
+                type="date"
+                placeholder="Data Inicial"
+                onChange={(e) => updateFilter("startDate", e.target.value)}
+              />
+              <Input
+                id="endDate"
+                type="date"
+                placeholder="Data Final"
+                onChange={(e) => updateFilter("endDate", e.target.value)}
+              />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="mainReason">Motivos</Label>
-              <Select>
+              <Select
+                onValueChange={(value) => updateFilter("mainReason", value)}
+              >
                 <SelectTrigger id="mainReason">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
@@ -54,12 +78,12 @@ export function FilterForm() {
               </Select>
             </div>
           </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancelar</Button>
-        <Button>Filtrar</Button>
-      </CardFooter>
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          <Button variant="outline">Cancelar</Button>
+          <Button type="submit">Filtrar</Button>
+        </CardFooter>
+      </form>
     </Card>
   );
 }
