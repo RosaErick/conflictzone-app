@@ -27,9 +27,8 @@ export function FilterForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
-    console.log("filters before refetch", filters);
     refetch();
+    return;
   };
 
   return (
@@ -80,8 +79,25 @@ export function FilterForm() {
           </div>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button variant="outline">Cancelar</Button>
-          <Button type="submit">Filtrar</Button>
+          <Button
+            variant="outline"
+            type="reset"
+            onClick={() => {
+              updateFilter("startDate", "");
+              updateFilter("endDate", "");
+              updateFilter("mainReason", "");
+            }}
+          >
+            Cancelar
+          </Button>
+          <Button
+            type="submit"
+            disabled={
+              !filters.startDate && !filters.endDate && !filters.mainReason
+            }
+          >
+            Filtrar
+          </Button>
         </CardFooter>
       </form>
     </Card>

@@ -1,9 +1,5 @@
 // src/hooks/useFilteredData.ts
 "use client";
-
-import { useFilter } from "@/components/filterform/provider";
-import { useState } from "react";
-
 import useSWR from "swr";
 
 interface OccurrenceData {
@@ -26,8 +22,6 @@ export const useFilteredData = (
     mainReason: "",
   }
 ) => {
-  
-
   const fetcher = async (url: string) => {
     const queryParams = new URLSearchParams(filters as any).toString();
 
