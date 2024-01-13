@@ -2,8 +2,8 @@
 import React, { createContext, useContext, useState } from "react";
 
 interface FilterValues {
-  startDate: string;
-  endDate: string;
+  initialdate: string;
+  finaldate: string;
   mainReason: string;
 }
 
@@ -18,8 +18,8 @@ export const useFilter = () => useContext(FilterContext) as FilterContextType;
 
 export function FilterProvider({ children }: { children: React.ReactNode }) {
   const [filters, setFilters] = useState<FilterValues>({
-    startDate: "",
-    endDate: "",
+    initialdate: "",
+    finaldate: "",
     mainReason: "",
   });
 

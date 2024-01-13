@@ -10,15 +10,15 @@ interface OccurrenceData {
 }
 
 interface FilterValues {
-  startDate: string;
-  endDate: string;
+  initialdate: string;
+  finaldate: string;
   mainReason: string;
 }
 
 export const useFilteredData = (
   filters: FilterValues = {
-    startDate: "",
-    endDate: "",
+    initialdate: "",
+    finaldate: "",
     mainReason: "",
   }
 ) => {

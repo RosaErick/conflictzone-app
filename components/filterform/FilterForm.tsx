@@ -45,16 +45,16 @@ export function FilterForm() {
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="Date">Data</Label>
               <Input
-                id="startDate"
+                id="initialdate"
                 type="date"
                 placeholder="Data Inicial"
-                onChange={(e) => updateFilter("startDate", e.target.value)}
+                onChange={(e) => updateFilter("initialdate", e.target.value)}
               />
               <Input
-                id="endDate"
+                id="finaldate"
                 type="date"
                 placeholder="Data Final"
-                onChange={(e) => updateFilter("endDate", e.target.value)}
+                onChange={(e) => updateFilter("finaldate", e.target.value)}
               />
             </div>
             <div className="flex flex-col space-y-1.5">
@@ -83,8 +83,8 @@ export function FilterForm() {
             variant="outline"
             type="reset"
             onClick={() => {
-              updateFilter("startDate", "");
-              updateFilter("endDate", "");
+              updateFilter("initialdate", "");
+              updateFilter("finaldate", "");
               updateFilter("mainReason", "");
             }}
           >
@@ -93,7 +93,7 @@ export function FilterForm() {
           <Button
             type="submit"
             disabled={
-              !filters.startDate && !filters.endDate && !filters.mainReason
+              !filters.initialdate || !filters.finaldate || !filters.mainReason
             }
           >
             Filtrar
