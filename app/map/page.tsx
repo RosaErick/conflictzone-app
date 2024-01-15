@@ -6,9 +6,9 @@ export type OccurrenceData = {
   occurrence_id: string;
   lat: number;
   lng: number;
-  weight?: number;
+  weight: number;
   date: string;
-  address?: string;
+  address: string;
   context_info: {
     mainReason: {
       name: string;
