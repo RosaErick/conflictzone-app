@@ -1,13 +1,7 @@
 // src/hooks/useFilteredData.ts
 "use client";
+import { OccurrenceData } from "@/app/map/page";
 import useSWR from "swr";
-
-interface OccurrenceData {
-  occurrence_id: string;
-  lat: number;
-  lng: number;
-  weight?: number;
-}
 
 interface FilterValues {
   initialdate: string;

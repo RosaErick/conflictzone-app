@@ -8,13 +8,6 @@ import { useFilteredData } from "@/hooks/useFilterData";
 import { ProgressLoadingMap } from "../PogressLoadingMap";
 import Heatmap from "./Heatmap";
 
-export type OccurrenceData = {
-  occurrence_id: string;
-  lat: number;
-  lng: number;
-  weight?: number;
-};
-
 const HeatmapContainer = () => {
   const { filters } = useFilter();
   const { data: occurrences, loading, error } = useFilteredData(filters);

@@ -1,8 +1,13 @@
 "use client";
-
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import React, { useEffect, useState } from "react";
 import { OccurrenceData } from "../../app/map/page";
+import { formatDate, formatTime } from "@/lib/utils";
 
 type HeatmapProps = {
   data: OccurrenceData[];
@@ -26,6 +31,11 @@ const Heatmap: React.FC<HeatmapProps> = ({ data }) => {
   });
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
+  const [selectedOccurrence, setSelectedOccurrence] =
+    useState<OccurrenceData | null>(null);
+
+  console.log("data on heatmap", data);
+  console.log("selectedOccurrence", selectedOccurrence);
 
   useEffect(() => {
     if (isLoaded && map) {
@@ -52,7 +62,48 @@ const Heatmap: React.FC<HeatmapProps> = ({ data }) => {
       onLoad={(mapInstance) => setMap(mapInstance)}
       onUnmount={() => setMap(null)}
     >
-      {/* HeatmapLayer is now controlled by useEffect */}
+      {/* HeatmapLayer is controlled by useEffect */}
+
+      {data.map((occurrence, index) => (
+        <Marker
+          key={index}
+          position={{ lat: occurrence.lat, lng: occurrence.lng }}
+          onClick={() => setSelectedOccurrence(occurrence)}
+          opacity={0} // Invisible marker
+        />
+      ))}
+
+      {selectedOccurrence && (
+        <InfoWindow
+          position={{
+            lat: selectedOccurrence.lat,
+            lng: selectedOccurrence.lng,
+          }}
+          onCloseClick={() => setSelectedOccurrence(null)}
+        >
+          <div className="p-4 bg-white rounded-lg shadow-md">
+            <h2 className="text-lg font-semibold text-gray-700">
+              Detalhes da Ocorrência
+            </h2>
+            <p className="text-sm text-gray-600">
+              Data: {formatDate(selectedOccurrence.date)}
+            </p>
+            <p className="text-sm text-gray-600">
+              Hora: {formatTime(selectedOccurrence.date)}
+            </p>
+            <p className="text-sm text-gray-600">
+              Endereço: {selectedOccurrence.address}
+            </p>
+            <p className="text-sm text-gray-600">
+              Motivo: {selectedOccurrence.context_info.mainReason.name}
+            </p>
+            <p className="text-sm text-gray-600">
+              Vítimas: {selectedOccurrence.victims.length}
+            </p>
+            {/* Add more details as needed */}
+          </div>
+        </InfoWindow>
+      )}
     </GoogleMap>
   ) : (
     <div>Loading...</div>

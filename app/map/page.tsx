@@ -7,36 +7,20 @@ export type OccurrenceData = {
   lat: number;
   lng: number;
   weight?: number;
+  date: string;
+  address?: string;
+  context_info: {
+    mainReason: {
+      name: string;
+    };
+    complementaryReasons: string[];
+    clippings: string[];
+    massacre: boolean;
+    policeUnit: string;
+  };
+  victims: string[];
   // ... other fields
 };
-
-type HeatmapProps = {
-  data: OccurrenceData[];
-};
-
-async function getData(): Promise<OccurrenceData[]> {
-  try {
-    const response = await fetch(
-      "http://localhost:8001/fogo_cruzado/occurrences/",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    console.log("response", response);
-    if (!response.ok) {
-      throw new Error(`Error fetching data: ${response.statusText}`);
-    }
-    const { occurrences } = await response.json();
-    return occurrences || [];
-  } catch (error) {
-    console.error("Failed to load heatmap data:", error);
-    return [];
-  }
-}
 
 export default function Page() {
   return (
