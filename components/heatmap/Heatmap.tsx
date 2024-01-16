@@ -12,6 +12,7 @@ import fireSvg from "../../public/flames-icon.svg";
 
 type HeatmapProps = {
   data: OccurrenceData[];
+  showMarkers: boolean;
 };
 
 const containerStyle = {
@@ -40,7 +41,7 @@ const gradient = [
   "rgba(255, 0, 0, 1)",
 ];
 
-const Heatmap: React.FC<HeatmapProps> = ({ data }) => {
+const Heatmap: React.FC<HeatmapProps> = ({ data, showMarkers }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyAOmvdZjOuquyQPBOaoS_yopHCe7BpYtJk",
@@ -74,6 +75,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data }) => {
         maxIntensity: 300,
         gradient: gradient,
         radius: 12,
+        dissipating: true,
       });
     }
   }, [isLoaded, map, data]);
@@ -96,7 +98,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data }) => {
           key={index}
           position={{ lat: occurrence.lat, lng: occurrence.lng }}
           onClick={() => setSelectedOccurrence(occurrence)}
-          opacity={0}
+          opacity={showMarkers ? 1 : 0}
           options={{
             icon: {
               url: fireSvg,
