@@ -5,14 +5,19 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { OccurrenceData } from "../../app/map/page";
 import { formatDate, formatTime } from "@/lib/utils";
 import fireSvg from "../../public/flames-icon.svg";
 
 type HeatmapProps = {
   data: OccurrenceData[];
-  showMarkers: boolean;
+  mapConfig: {
+    radius: number;
+    opacity: number;
+    maxIntensity: number;
+    showMarkers: boolean;
+  };
 };
 
 const containerStyle = {
@@ -41,44 +46,50 @@ const gradient = [
   "rgba(255, 0, 0, 1)",
 ];
 
-const Heatmap: React.FC<HeatmapProps> = ({ data, showMarkers }) => {
+const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyAOmvdZjOuquyQPBOaoS_yopHCe7BpYtJk",
     libraries: ["visualization"],
   });
-
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [selectedOccurrence, setSelectedOccurrence] =
     useState<OccurrenceData | null>(null);
-
+  const heatmapRef = useRef<google.maps.visualization.HeatmapLayer | null>(
+    null
+  );
   console.log("data on heatmap", data);
   console.log("selectedOccurrence", selectedOccurrence);
+  console.log("mapConfig on heatmapcomponent", mapConfig);
 
   useEffect(() => {
     if (isLoaded && map) {
-      // Convert the data to the format expected by the HeatmapLayer
-
-      console.log(
-        "data",
-        data.map((item) => item.weight)
-      );
-
       const heatmapData = data.map((item) => ({
         location: new google.maps.LatLng(item.lat, item.lng),
         weight: item.weight,
       }));
 
-      new google.maps.visualization.HeatmapLayer({
-        data: heatmapData,
-        map: map,
-        maxIntensity: 300,
-        gradient: gradient,
-        radius: 12,
-        dissipating: true,
-      });
+      if (!heatmapRef.current) {
+        heatmapRef.current = new google.maps.visualization.HeatmapLayer({
+          data: heatmapData,
+          map: map,
+          gradient: gradient,
+          radius: mapConfig.radius,
+          dissipating: true,
+          opacity: mapConfig.opacity,
+        });
+      } else {
+        heatmapRef.current.setOptions({
+          data: heatmapData,
+          maxIntensity: mapConfig.maxIntensity,
+          gradient: gradient,
+          radius: mapConfig.radius,
+          dissipating: true,
+          opacity: mapConfig.opacity,
+        });
+      }
     }
-  }, [isLoaded, map, data]);
+  }, [isLoaded, map, data, mapConfig]);
 
   return isLoaded ? (
     <GoogleMap
@@ -98,13 +109,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, showMarkers }) => {
           key={index}
           position={{ lat: occurrence.lat, lng: occurrence.lng }}
           onClick={() => setSelectedOccurrence(occurrence)}
-          opacity={showMarkers ? 1 : 0}
-          options={{
-            icon: {
-              url: fireSvg,
-              scaledSize: new google.maps.Size(0, 1),
-            },
-          }}
+          opacity={mapConfig.showMarkers ? 1 : 0}
         />
       ))}
 
@@ -140,9 +145,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, showMarkers }) => {
         </InfoWindow>
       )}
     </GoogleMap>
-  ) : (
-    <div>Loading...</div>
-  );
+  ) : null;
 };
 
 export default React.memo(Heatmap);

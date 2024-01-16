@@ -17,3 +17,13 @@ export function formatTime(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleTimeString('pt-BR', options);
 }
+
+
+export function CustomConfigDebounce<F extends (...args: any[]) => void>(func: F, waitFor: number): (...args: Parameters<F>) => void {
+  let timeoutId: number | undefined;
+
+  return function(...args: Parameters<F>) {
+    clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => func(...args), waitFor);
+  };
+}
