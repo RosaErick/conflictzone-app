@@ -1,6 +1,4 @@
 import * as React from "react";
-
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -17,7 +15,6 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { CustomConfigDebounce } from "@/lib/utils";
 
 interface MapConfigProps {
   mapConfig: {
@@ -51,7 +48,6 @@ export function MapConfigCard({ mapConfig, updateConfig }: MapConfigProps) {
           Configure as opções do mapa para sua busca
         </CardDescription>
       </CardHeader>
-
       <CardContent className="p-4">
         <div className="space-y-4">
           <div className="flex items-center justify-between">

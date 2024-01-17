@@ -6,7 +6,7 @@ import { ModeToggle } from "./ModeToggle";
 
 const Nav = () => {
   return (
-    <header className="flex items-center justify-between py-10">
+    <header className="flex items-center justify-between max-w-4xl self-center w-full py-1">
       <div>
         <Link href="/">
           <div className="flex items-center justify-between">

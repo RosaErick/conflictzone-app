@@ -57,7 +57,7 @@ export function FilterForm() {
                 onChange={(e) => updateFilter("finaldate", e.target.value)}
               />
             </div>
-            <div className="flex flex-col space-y-1.5">
+            <div className="flex flex-col space-y-1.5 gap-2">
               <Label htmlFor="mainReason">Motivos</Label>
               <Select
                 onValueChange={(value) => updateFilter("mainReason", value)}
@@ -76,6 +76,7 @@ export function FilterForm() {
                 </SelectContent>
               </Select>
 
+              <Label htmlFor="typeOccurrence">Tipo de Ocorrência</Label>
               <Select
                 onValueChange={(value) => updateFilter("typeOccurrence", value)}
               >

@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { OccurrenceData } from "../../app/map/page";
 import { formatDate, formatTime } from "@/lib/utils";
-import fireSvg from "../../public/flames-icon.svg";
+
 
 type HeatmapProps = {
   data: OccurrenceData[];
@@ -22,7 +22,7 @@ type HeatmapProps = {
 
 const containerStyle = {
   width: "100%",
-  height: "100vh",
+  height: "500px",
 };
 
 const center = {

@@ -11,6 +11,8 @@ import { useMapConfig } from "@/hooks/useMapConfig";
 import { RocketIcon } from "@radix-ui/react-icons";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import SummaryStatisticsPanel from "../SummaryStatisticsPanel";
+
 
 const HeatmapContainer = () => {
   const { filters } = useFilter();
@@ -28,22 +30,25 @@ const HeatmapContainer = () => {
       {loading ? (
         <div className="flex flex-col justify-center items-center mt-10 gap-10">
           {" "}
-          <Alert
-            className="max-w-[450px] w-full"
-          >
+          <Alert className="max-w-[450px] w-full">
             <RocketIcon className="h-4 w-4" />
             <AlertTitle>Carregando o mapa!</AlertTitle>
             <AlertDescription>
               Este projeto é um projeto de pesquisa em desenvolvimento.
             </AlertDescription>
           </Alert>
-          <ProgressLoadingMap loading={loading}          
-          />
+          <ProgressLoadingMap loading={loading} />
         </div>
       ) : error ? (
         <div>Error: {error.message}</div>
       ) : (
-        <Heatmap data={occurrences || []} mapConfig={mapConfig} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <Heatmap data={occurrences || []} mapConfig={mapConfig} />
+
+          <div>
+            <SummaryStatisticsPanel occurrences={occurrences || []} />
+          </div>
+        </div>
       )}
     </>
   );
