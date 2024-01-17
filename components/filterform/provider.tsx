@@ -1,10 +1,11 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
 
-interface FilterValues {
+export interface FilterValues {
   initialdate: string;
   finaldate: string;
   mainReason: string;
+  typeOccurrence: string;
 }
 
 interface FilterContextType {
@@ -21,6 +22,7 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
     initialdate: "",
     finaldate: "",
     mainReason: "",
+    typeOccurrence: "",
   });
 
   const updateFilter = (name: keyof FilterValues, value: string) => {

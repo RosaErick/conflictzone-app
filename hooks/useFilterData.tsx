@@ -1,19 +1,17 @@
 // src/hooks/useFilteredData.ts
 "use client";
 import { OccurrenceData } from "@/app/map/page";
+import { FilterValues } from "@/components/filterform/provider";
 import useSWR from "swr";
 
-interface FilterValues {
-  initialdate: string;
-  finaldate: string;
-  mainReason: string;
-}
+
 
 export const useFilteredData = (
   filters: FilterValues = {
     initialdate: "",
     finaldate: "",
     mainReason: "",
+    typeOccurrence: "",
   }
 ) => {
   const fetcher = async (url: string) => {

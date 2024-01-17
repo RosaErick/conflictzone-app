@@ -121,9 +121,9 @@ export function MapConfigCard({ mapConfig, updateConfig }: MapConfigProps) {
             </HoverCard>
             <Input
               type="range"
-              min="100"
+              min="0"
               max="1000"
-              step="10"
+              step="5"
               value={mapConfig.maxIntensity}
               onChange={handleMaxIntensityChange}
             />

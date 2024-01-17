@@ -75,6 +75,19 @@ export function FilterForm() {
                   <SelectItem value="Homícidio">Homícidio</SelectItem>
                 </SelectContent>
               </Select>
+
+              <Select
+                onValueChange={(value) => updateFilter("typeOccurrence", value)}
+              >
+                <SelectTrigger id="typeOccurrence">
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  <SelectItem value="withVictim">Com Vítimas</SelectItem>
+                  <SelectItem value="withoutVictim">Sem Vítimas</SelectItem>
+                  <SelectItem value="Completo">Completo</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </CardContent>
@@ -86,6 +99,7 @@ export function FilterForm() {
               updateFilter("initialdate", "");
               updateFilter("finaldate", "");
               updateFilter("mainReason", "");
+              updateFilter("typeOccurrence", "");
             }}
           >
             Cancelar
