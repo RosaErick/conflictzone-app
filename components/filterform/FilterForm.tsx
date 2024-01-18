@@ -74,7 +74,7 @@ export function FilterForm() {
                     Operação policial
                   </SelectItem>
                   <SelectItem value="Homícidio">Homícidio</SelectItem>
-                  <SelectItem value="Completo">Completo</SelectItem>
+                  <SelectItem value="Todos">Todos</SelectItem>
                 </SelectContent>
               </Select>
 

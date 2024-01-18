@@ -4,21 +4,26 @@ import { OccurrenceData } from "@/app/map/page";
 import { FilterValues } from "@/components/filterform/provider";
 import useSWR from "swr";
 
+export const useFilteredData = (filters: FilterValues) => {
+  function verifyFilters(filters: FilterValues) {
+    let filtersToApply = filters;
 
+    if (filters.mainReason === "Todos") {
+      filtersToApply = { ...filtersToApply, mainReason: "" };
+    }
 
-export const useFilteredData = (
-  filters: FilterValues = {
-    initialdate: "",
-    finaldate: "",
-    mainReason: "",
-    typeOccurrence: "",
+    if (filters.typeOccurrence === "Completo") {
+      filtersToApply = { ...filtersToApply, typeOccurrence: "" };
+    }
+
+    return filtersToApply;
   }
-) => {
-  const fetcher = async (url: string) => {
-    const queryParams = new URLSearchParams(filters as any).toString();
 
-    console.log("filters", filters);
-    console.log("queryParams", queryParams);
+  const fetcher = async (url: string) => {
+    const queryParams = new URLSearchParams(
+      verifyFilters(filters) as any
+    ).toString();
+
     const response = await fetch(
       `http://localhost:8001/fogo_cruzado/occurrences/?${queryParams}`,
       {

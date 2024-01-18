@@ -4,8 +4,8 @@ import React, { createContext, useContext, useState } from "react";
 export interface FilterValues {
   initialdate: string;
   finaldate: string;
-  mainReason: string;
-  typeOccurrence: string;
+  mainReason?: string;
+  typeOccurrence?: string;
 }
 
 interface FilterContextType {
