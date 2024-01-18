@@ -9,9 +9,9 @@ export default async function About() {
           Patrol Analytics é uma iniciativa aberta e colaborativa que oferece
           visualizações e análises avançadas sobre ocorrências de violência
           armada no Rio de Janeiro. Este projeto foi criado para fornecer um
-          entendimento mais aprofundado e objetivo dos incidentes de segurança pública,
-          utilizando como base a maior base de dados sobre violência armada da
-          América Latina, fornecida pela API do Fogo Cruzado.
+          entendimento mais aprofundado e objetivo dos incidentes de segurança
+          pública, utilizando como base a maior base de dados sobre violência
+          armada da América Latina, fornecida pela API do Fogo Cruzado.
         </p>
 
         <p className="leading-7 [&:not(:first-child)]:mt-6">
@@ -34,30 +34,19 @@ export default async function About() {
         </p>
 
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          Como o maior observatório de violência armada da América Latina, o
-          Fogo Cruzado tem um papel crucial em alimentar nosso sistema com dados
-          precisos e atualizados. Em parceria com essa plataforma, nos dedicamos
-          a transformar números em narrativas visuais que possam impactar
-          positivamente a sociedade. Este é um projeto vivo, construído em
-          público e para o público. Convidamos a comunidade a contribuir e
-          apoiar o Patrol Analytics de diversas formas: através de
-          desenvolvimento de código, feedbacks construtivos ou patrocínio.
-        </p>
-
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
-          Para fazer parte dessa iniciativa, visite nosso repositório no GitHub,
-          contribua com o projeto ou entre em contato para discutir apoio e
-          patrocínio.
+          Este é um projeto vivo, construído em público e para o público.
+          Convidamos a comunidade a contribuir e apoiar o Patrol Analytics de
+          diversas formas: através de desenvolvimento de código, feedbacks
+          construtivos ou patrocínio. Para fazer parte dessa iniciativa, visite
+          nosso repositório no GitHub, contribua com o projeto ou entre em
+          contato para discutir apoio e patrocínio.
         </p>
       </div>
-      
-      <div
-        className="flex flex-col items-center justify-center p-5 mt-10 gap-5"
-      >
-      
-      <p>Em desenvolvimento... </p>
-      <span>👷‍♂️</span>
-      <div className="animate-spin h-6 w-6 rounded-full border-t-2 border-gray-900" />
+
+      <div className="flex flex-col items-center justify-center p-5 mt-10 gap-5">
+        <p>Em desenvolvimento... </p>
+        <span>👷‍♂️</span>
+        <div className="animate-spin h-6 w-6 rounded-full border-t-2 border-gray-900" />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-5 mt-10">
+    <section className="flex min-h-screen flex-col max-w-4xl self-center items-center justify-between p-5 mt-20">
       <div className="mb-32 grid text-center lg:max-w-6xl lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left">
         <a
           href="https://github.com/RosaErick/patrolAnalytics-app"
@@ -55,6 +55,6 @@ export default function Home() {
           </p>
         </a>
       </div>
-    </main>
+    </section>
   );
 }
