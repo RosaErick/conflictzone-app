@@ -33,9 +33,40 @@ export function CustomConfigDebounce<F extends (...args: any[]) => void>(func: F
 export const oneYearAgo = (): string => {
   const date = new Date();
   date.setFullYear(date.getFullYear() - 1);
+
+  // Adjust for the timezone offset
+  const offset = date.getTimezoneOffset();
+  date.setMinutes(date.getMinutes() - offset);
+
   return date.toISOString().split('T')[0]; // Returns date in YYYY-MM-DD format
 };
 
 export const todayDate = (): string => {
-  return new Date().toISOString().split('T')[0];
+  const date = new Date();
+
+  // Adjust for the timezone offset
+  const offset = date.getTimezoneOffset();
+  date.setMinutes(date.getMinutes() - offset);
+
+  return date.toISOString().split('T')[0];
+};
+
+
+
+export const formatDateDisplay = (dateStr: string): string => {
+  if (!dateStr) return "";
+
+ 
+  const [year, month, day] = dateStr
+    .split("-")
+    .map((num) => parseInt(num, 10));
+
+
+  const date = new Date(year, month - 1, day); 
+
+  const formattedDay = date.getDate().toString().padStart(2, "0");
+  const formattedMonth = (date.getMonth() + 1).toString().padStart(2, "0"); 
+  const formattedYear = date.getFullYear();
+
+  return `${formattedDay}/${formattedMonth}/${formattedYear}`;
 };

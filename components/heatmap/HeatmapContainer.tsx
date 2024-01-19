@@ -9,17 +9,14 @@ import Heatmap from "./Heatmap";
 import { MapConfigCard } from "./MapConfigCard";
 import { useMapConfig } from "@/hooks/useMapConfig";
 import { RocketIcon } from "@radix-ui/react-icons";
-
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import SummaryStatisticsPanel from "../SummaryStatisticsPanel";
-
+import { DetailedOccurrenceTable } from "../tables/DetailedOccurenceTable";
 
 const HeatmapContainer = () => {
   const { filters } = useFilter();
   const { data: occurrences, loading, error } = useFilteredData(filters);
   const { mapConfig, updateConfig } = useMapConfig();
-
-  console.log("mapConfig", mapConfig);
 
   return (
     <>
@@ -47,6 +44,11 @@ const HeatmapContainer = () => {
 
           <div>
             <SummaryStatisticsPanel occurrences={occurrences || []} />
+          </div>
+
+          <div className="col-span-2">
+            <h3 className="font-semibold mb-2 ">Ocorrências Detalhadas</h3>
+            <DetailedOccurrenceTable occurrences={occurrences || []} />
           </div>
         </div>
       )}

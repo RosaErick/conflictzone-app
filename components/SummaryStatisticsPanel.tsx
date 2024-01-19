@@ -2,7 +2,7 @@
 "use client";
 import React from "react";
 import { OccurrenceData } from "../app/map/page";
-import { formatDate } from "@/lib/utils";
+import {  formatDateDisplay } from "@/lib/utils";
 import PieChart from "./charts/PieChart";
 import {
   Card,
@@ -58,16 +58,21 @@ const SummaryStatisticsPanel: React.FC<SummaryStatisticsProps> = ({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Total de Ocorrências: {occurrences.length}</p>
-        <p>Filtros Aplicados:</p>
-        <ul>
-          <li>Data Inicial: {filters.initialdate}</li>
-          <li>Data Final: {filters.finaldate}</li>
-          <li>Motivo: {filters.mainReason}</li>
-          <li>Tipo de Ocorrência: {filters.typeOccurrence}</li>
-        </ul>
+        <div className="my-0 p-4 border border-gray-200 rounded-md">
+          <h4 className="font-semibold mb-2">Filtros Aplicados:</h4>
+
+          <p>Total de ocorrências encontradas: {occurrences.length}</p>
+          <span className="font-semibold">
+            {formatDateDisplay(filters.initialdate)} ~{" "}
+            {formatDateDisplay(filters.finaldate)}
+          </span>
+          <ul className="list-disc list-inside">
+            <li>Motivo: {filters.mainReason || "Todos"}</li>
+            <li>Tipo de Ocorrência: {filters.typeOccurrence || "Completo"}</li>
+          </ul>
+        </div>
         <div className="mt-4 ">
-          <h3 className="font-semibold mb-2 ">Incidentes Recentes</h3>
+          <h3 className="font-semibold mb-2 "> 10 Incidentes mais recentes</h3>
           <div className="max-h-[300px] overflow-x-auto">
             <SummaryStaticsTable data={recentIncidents} />
           </div>

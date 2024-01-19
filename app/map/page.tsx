@@ -12,13 +12,33 @@ export type OccurrenceData = {
   context_info: {
     mainReason: {
       name: string;
+      id: string;
     };
-    complementaryReasons: string[];
-    clippings: string[];
+    complementaryReasons: [
+      {
+        name: string;
+        id: string;
+      }
+    ];
+
+    clippings: [
+      {
+        name: string;
+        id: string;
+      }
+    ];
     massacre: boolean;
     policeUnit: string;
   };
   victims: string[];
+  city: {
+    name: string;
+    id: string;
+  };
+  neighborhood: {
+    name: string;
+    id: string;
+  };
   // ... other fields
 };
 
