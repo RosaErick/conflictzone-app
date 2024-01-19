@@ -27,3 +27,15 @@ export function CustomConfigDebounce<F extends (...args: any[]) => void>(func: F
     timeoutId = window.setTimeout(() => func(...args), waitFor);
   };
 }
+
+
+
+export const oneYearAgo = (): string => {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() - 1);
+  return date.toISOString().split('T')[0]; // Returns date in YYYY-MM-DD format
+};
+
+export const todayDate = (): string => {
+  return new Date().toISOString().split('T')[0];
+};

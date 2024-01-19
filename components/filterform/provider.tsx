@@ -1,4 +1,5 @@
 "use client";
+import { oneYearAgo, todayDate } from "@/lib/utils";
 import React, { createContext, useContext, useState } from "react";
 
 export interface FilterValues {
@@ -19,10 +20,10 @@ export const useFilter = () => useContext(FilterContext) as FilterContextType;
 
 export function FilterProvider({ children }: { children: React.ReactNode }) {
   const [filters, setFilters] = useState<FilterValues>({
-    initialdate: "",
-    finaldate: "",
-    mainReason: "",
-    typeOccurrence: "",
+    initialdate: oneYearAgo(),
+    finaldate: todayDate(),
+    mainReason: "Todos",
+    typeOccurrence: "Completo",
   });
 
   const updateFilter = (name: keyof FilterValues, value: string) => {

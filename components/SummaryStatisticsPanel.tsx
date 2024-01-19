@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SummaryStaticsTable } from "./tables/SummaryStaticsTable";
+import { useFilter } from "./filterform/provider";
 
 interface SummaryStatisticsProps {
   occurrences: OccurrenceData[];
@@ -24,6 +25,8 @@ interface OccurrenceTypeCount {
 const SummaryStatisticsPanel: React.FC<SummaryStatisticsProps> = ({
   occurrences,
 }) => {
+  const { filters } = useFilter();
+
   function getRecentIncidents(
     occurrences: OccurrenceData[],
     numIncidents: number = 10
@@ -56,6 +59,13 @@ const SummaryStatisticsPanel: React.FC<SummaryStatisticsProps> = ({
       </CardHeader>
       <CardContent>
         <p>Total de Ocorrências: {occurrences.length}</p>
+        <p>Filtros Aplicados:</p>
+        <ul>
+          <li>Data Inicial: {filters.initialdate}</li>
+          <li>Data Final: {filters.finaldate}</li>
+          <li>Motivo: {filters.mainReason}</li>
+          <li>Tipo de Ocorrência: {filters.typeOccurrence}</li>
+        </ul>
         <div className="mt-4 ">
           <h3 className="font-semibold mb-2 ">Incidentes Recentes</h3>
           <div className="max-h-[300px] overflow-x-auto">

@@ -21,7 +21,7 @@ const PieChart = ({ data }: PieChartProps) => {
   }));
 
   return (
-    <div style={{ height: 350 }}>
+    <div style={{ height: 560 }}>
       {" "}
       {/* Adjust size as needed */}
       <ResponsivePie
@@ -35,11 +35,16 @@ const PieChart = ({ data }: PieChartProps) => {
         borderWidth={1}
         borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
         arcLinkLabelsSkipAngle={10}
-        arcLinkLabelsTextColor="#333333"
+
         arcLinkLabelsThickness={2}
-        arcLinkLabelsColor={{ from: "color" }}
+
         arcLabelsSkipAngle={10}
-        arcLabelsTextColor={{ from: "color", modifiers: [["darker", 2]] }}
+
+        tooltip={({ datum }) => (
+          <span>
+            {datum.label}: {datum.value}
+          </span>
+        )}
       />
     </div>
   );
