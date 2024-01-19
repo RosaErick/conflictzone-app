@@ -21,7 +21,7 @@ const PieChart = ({ data }: PieChartProps) => {
   }));
 
   return (
-    <div style={{ height: 400 }}>
+    <div style={{ height: 350 }}>
       {" "}
       {/* Adjust size as needed */}
       <ResponsivePie

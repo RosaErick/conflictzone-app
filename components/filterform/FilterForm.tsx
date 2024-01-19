@@ -61,19 +61,26 @@ export function FilterForm() {
               <Label htmlFor="mainReason">Motivos</Label>
               <Select
                 onValueChange={(value) => updateFilter("mainReason", value)}
-                
               >
                 <SelectTrigger id="mainReason">
                   <SelectValue placeholder="Selecione um motivo" />
                 </SelectTrigger>
                 <SelectContent position="popper">
-                  <SelectItem value="Execução">Execução</SelectItem>
-                  <SelectItem value="Feminicídio">Feminícidio</SelectItem>
+                  <SelectItem value="Ataque a civis">Ataque a civis</SelectItem>
                   <SelectItem value="Ação policial">Ação policial</SelectItem>
                   <SelectItem value="Operação policial">
                     Operação policial
                   </SelectItem>
-                  <SelectItem value="Homícidio">Homícidio</SelectItem>
+                  <SelectItem value="Disputa">Disputa</SelectItem>
+                  <SelectItem value="Homicidio/Tentativa">
+                    Homicidio/Tentativa
+                  </SelectItem>
+                  <SelectItem value="Tentativa/Roubo">
+                    Tentativa/Roubo
+                  </SelectItem>
+                  <SelectItem value="Não identificado">
+                    Não identificado
+                  </SelectItem>
                   <SelectItem value="Todos">Todos</SelectItem>
                 </SelectContent>
               </Select>
