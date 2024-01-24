@@ -70,18 +70,20 @@ export const columns: ColumnDef<OccurrenceData>[] = [
     accessorKey: "agent_presence",
     header: "Presença de Agente",
     id: "Presença de Agente",
+    cell: ({ getValue }) => (getValue() ? "Sim" : "Não"),
   },
   {
     accessorKey: "police_action",
     header: "Ação Policial",
     id: "Ação Policial",
+    cell: ({ getValue }) => (getValue() ? "Sim" : "Não"),
   },
 
   {
     id: "vitimas",
     header: "Vítimas",
     accessorFn: (row) => row.victims.length,
-    cell: ({ getValue }) => getValue() + " victim(s)",
+    cell: ({ getValue }) => getValue() ?? "Não",
   },
   {
     id: "Unidade Policial",
@@ -104,8 +106,9 @@ export const columns: ColumnDef<OccurrenceData>[] = [
   },
   {
     id: "massacre",
-    header: "Massacre",
+    header: "Chacina",
     accessorFn: (row) => row.context_info.massacre,
+    cell: ({ getValue }) => (getValue() ? "Sim" : "Não"),
   },
 
   // Add more columns as needed
