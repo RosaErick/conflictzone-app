@@ -2,7 +2,7 @@
 "use client";
 import React from "react";
 import { OccurrenceData } from "../app/map/page";
-import {  formatDateDisplay } from "@/lib/utils";
+import { formatDateDisplay } from "@/lib/utils";
 import PieChart from "./charts/PieChart";
 import {
   Card,
@@ -18,9 +18,9 @@ interface SummaryStatisticsProps {
   occurrences: OccurrenceData[];
 }
 
-interface OccurrenceTypeCount {
-  [key: string]: number;
-}
+// interface OccurrenceTypeCount {
+//   [key: string]: number;
+// }
 
 const SummaryStatisticsPanel: React.FC<SummaryStatisticsProps> = ({
   occurrences,
@@ -40,14 +40,14 @@ const SummaryStatisticsPanel: React.FC<SummaryStatisticsProps> = ({
   const recentIncidents = getRecentIncidents(occurrences);
 
   // Prepare data for the pie chart
-  const occurrenceTypes = occurrences.reduce<OccurrenceTypeCount>(
-    (acc, occurrence) => {
-      const type = occurrence.context_info.mainReason.name;
-      acc[type] = (acc[type] || 0) + 1;
-      return acc;
-    },
-    {}
-  );
+  // const occurrenceTypes = occurrences.reduce<OccurrenceTypeCount>(
+  //   (acc, occurrence) => {
+  //     const type = occurrence.context_info.mainReason.name;
+  //     acc[type] = (acc[type] || 0) + 1;
+  //     return acc;
+  //   },
+  //   {}
+  // );
 
   return (
     <Card>
@@ -77,9 +77,7 @@ const SummaryStatisticsPanel: React.FC<SummaryStatisticsProps> = ({
             <SummaryStaticsTable data={recentIncidents} />
           </div>
         </div>
-        <div className="mt-4">
-          <PieChart data={occurrenceTypes} />
-        </div>
+        <div className="mt-4">{/* <PieChart data={occurrenceTypes} /> */}</div>
       </CardContent>
     </Card>
   );

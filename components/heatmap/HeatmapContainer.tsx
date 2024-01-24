@@ -12,6 +12,9 @@ import { RocketIcon } from "@radix-ui/react-icons";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import SummaryStatisticsPanel from "../SummaryStatisticsPanel";
 import { DetailedOccurrenceTable } from "../tables/DetailedOccurenceTable";
+import BarChart from "../charts/BarChart";
+import { BarChartCard } from "../BarChartCard";
+import { PieChartCard } from "../PieChartCard";
 
 const HeatmapContainer = () => {
   const { filters } = useFilter();
@@ -44,6 +47,14 @@ const HeatmapContainer = () => {
 
           <div>
             <SummaryStatisticsPanel occurrences={occurrences || []} />
+          </div>
+          <div
+            className="col-span-2
+          grid grid-cols-1 lg:grid-cols-2 gap-4
+            "
+          >
+            <BarChartCard data={occurrences || []} />
+            <PieChartCard data={occurrences || []} />
           </div>
 
           <div className="col-span-2">

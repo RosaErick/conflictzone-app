@@ -13,7 +13,6 @@ interface PieChartProps {
 }
 
 const PieChart = ({ data }: PieChartProps) => {
-  // Convert the data to a format that Nivo can understand
   const chartData: PieChartData[] = Object.keys(data).map((key) => ({
     id: key,
     label: key,
@@ -21,9 +20,7 @@ const PieChart = ({ data }: PieChartProps) => {
   }));
 
   return (
-    <div style={{ height: 560 }}>
-      {" "}
-      {/* Adjust size as needed */}
+    <div style={{ height: 450 }}>
       <ResponsivePie
         data={chartData}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
@@ -31,15 +28,12 @@ const PieChart = ({ data }: PieChartProps) => {
         padAngle={0.7}
         cornerRadius={3}
         activeOuterRadiusOffset={8}
-        colors={{ scheme: "nivo" }} // You can customize the color scheme
+        colors={{ scheme: "nivo" }}
         borderWidth={1}
         borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
         arcLinkLabelsSkipAngle={10}
-
         arcLinkLabelsThickness={2}
-
         arcLabelsSkipAngle={10}
-
         tooltip={({ datum }) => (
           <span>
             {datum.label}: {datum.value}

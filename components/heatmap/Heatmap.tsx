@@ -22,7 +22,7 @@ type HeatmapProps = {
 
 const containerStyle = {
   width: "100%",
-  height: "500px",
+  height: "640px",
 };
 
 const center = {

@@ -44,6 +44,7 @@ export const columns: ColumnDef<OccurrenceData>[] = [
     accessorKey: "date",
     id: "data",
     header: "Data",
+    enableSorting: true,
     cell: ({ getValue }) => formatDateDisplay(getValue() as string),
   },
   {
@@ -84,6 +85,7 @@ export const columns: ColumnDef<OccurrenceData>[] = [
     header: "Vítimas",
     accessorFn: (row) => row.victims.length,
     cell: ({ getValue }) => getValue() ?? "Não",
+    sortingFn: "basic",
   },
   {
     id: "Unidade Policial",
@@ -100,6 +102,7 @@ export const columns: ColumnDef<OccurrenceData>[] = [
   },
   {
     id: "clippings",
+
     header: "Recortes",
     accessorFn: (row) =>
       row.context_info.clippings.map((clipping) => clipping.name).join(", "),
@@ -133,6 +136,8 @@ export function DetailedOccurrenceTable({
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
+    enableSorting: true,
+    sortDescFirst: true,
     state: {
       sorting,
       columnFilters,
@@ -186,13 +191,24 @@ export function DetailedOccurrenceTable({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead
+                      key={header.id}
+                      onClick={header.column.getToggleSortingHandler()}
+                      style={{ cursor: "pointer" }}
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
                             header.getContext()
                           )}
+                      <span>
+                        {header.column.getIsSorted()
+                          ? header.column.getIsSorted() === "desc"
+                            ? " 🔽"
+                            : " 🔼"
+                          : ""}
+                      </span>
                     </TableHead>
                   );
                 })}
