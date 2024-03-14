@@ -8,7 +8,6 @@ export const BarChartCard: React.FC<{ data: OccurrenceData[] }> = ({
     const occurrenceCountByCity: Record<string, number> = {};
 
     data.forEach((occurrence) => {
-      console.log(occurrence.neighborhood?.name);
       const cityName = occurrence.neighborhood?.name
         ? occurrence.neighborhood.name
         : "Não informado";
@@ -25,15 +24,14 @@ export const BarChartCard: React.FC<{ data: OccurrenceData[] }> = ({
   const topN = 10;
   const graphData = transformData(data)
     .sort((a, b) => b.occurrences - a.occurrences)
-    .slice(0, topN); 
+    .slice(0, topN);
 
-  console.log(graphData);
   return (
     <div>
       <h2 className="scroll-m-20 text-1xl font-bold tracking-tight lg:text-1xl mt-10 text-center">
         Ocorrências por bairro
       </h2>
-      <BarChart data={graphData} /> 
-    </div> 
+      <BarChart data={graphData} />
+    </div>
   );
 };

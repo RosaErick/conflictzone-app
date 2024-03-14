@@ -19,8 +19,6 @@ export const useFilteredData = (filters: FilterValues) => {
     return filtersToApply;
   }
 
-  console.log("filters", filters);
-
   const fetcher = async (url: string) => {
     const queryParams = new URLSearchParams(
       verifyFilters(filters) as any

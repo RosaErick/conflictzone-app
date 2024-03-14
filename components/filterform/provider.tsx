@@ -30,9 +30,6 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
-
-  console.log("filters in update ", filters)
-
   return (
     <FilterContext.Provider value={{ filters, updateFilter }}>
       {children}

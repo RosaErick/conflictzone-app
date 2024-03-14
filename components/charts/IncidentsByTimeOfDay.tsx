@@ -23,7 +23,6 @@ const categorizeByTimeOfDay = (data: OccurrenceData[]) => {
   data.forEach((occurrence) => {
     const hour = new Date(occurrence.date).getHours();
 
-    console.log(hour);
     if (hour >= 1 && hour < 5) timeOfDayCounts["Madrugada"]++;
     else if (hour >= 5 && hour < 12) timeOfDayCounts["Manhã"]++;
     else if (hour >= 12 && hour < 18) timeOfDayCounts["Tarde"]++;

@@ -14,7 +14,6 @@ import SummaryStatisticsPanel from "../SummaryStatisticsPanel";
 import { DetailedOccurrenceTable } from "../tables/DetailedOccurenceTable";
 import { BarChartCard } from "../BarChartCard";
 import { PieChartCard } from "../PieChartCard";
-import { LineChartCard } from "../LineChartCard";
 import TrendOverTime from "../charts/TrendOverTime";
 import IncidentsByTimeOfDay from "../charts/IncidentsByTimeOfDay";
 import IncidentsHeatMap from "../charts/IncidentsHeatMap";

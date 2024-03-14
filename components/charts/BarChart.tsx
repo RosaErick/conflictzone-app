@@ -24,8 +24,6 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
     return `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
   };
 
-  console.log("get color", getColor);
-
   return (
     <div style={{ height: 400, width: "100%" }}>
       <ResponsiveBar
@@ -40,16 +38,15 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
         borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
         axisTop={null}
         tooltip={({ data }) => (
-            <span>
-              {data.city}: {data.occurrences}
-            </span>
-          )}
+          <span>
+            {data.city}: {data.occurrences}
+          </span>
+        )}
         axisRight={null}
         axisBottom={{
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 45,
-         
         }}
         axisLeft={{
           tickSize: 5,
