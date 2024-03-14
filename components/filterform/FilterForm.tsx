@@ -32,9 +32,9 @@ export function FilterForm() {
   };
 
   return (
-    <Card className="w-[350px]">
+    <Card className="max-w-screen-lg">
       <CardHeader>
-        <CardTitle>Filtre o Mapa de Calor</CardTitle>
+        <CardTitle>Filtrar dados</CardTitle>
         <CardDescription>
           Escolha como deseja visualizar os dados
         </CardDescription>

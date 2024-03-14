@@ -9,7 +9,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { OccurrenceData } from "../../app/map/page";
 import { formatDate, formatTime } from "@/lib/utils";
 
-
 type HeatmapProps = {
   data: OccurrenceData[];
   mapConfig: {
@@ -22,7 +21,7 @@ type HeatmapProps = {
 
 const containerStyle = {
   width: "100%",
-  height: "640px",
+  height: "60vh",
 };
 
 const center = {
@@ -102,8 +101,6 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
       onLoad={(mapInstance) => setMap(mapInstance)}
       onUnmount={() => setMap(null)}
     >
-      {/* HeatmapLayer is controlled by useEffect */}
-
       {data.map((occurrence, index) => (
         <Marker
           key={index}

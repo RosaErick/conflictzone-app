@@ -14,5 +14,14 @@ export const PieChartCard: React.FC<{ data: OccurrenceData[] }> = ({
     return acc;
   }, {});
 
-  return <PieChart data={occurrenceTypes} />;
+  return (
+    <div>
+      <h2 className="scroll-m-20 text-1xl font-bold tracking-tight lg:text-1xl mt-10 text-center">
+        Ocorrências por tipo
+      </h2>
+      <PieChart data={occurrenceTypes} />
+    </div>
+  );
 };
+
+export default PieChartCard;

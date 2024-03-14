@@ -17,20 +17,20 @@ export default async function About() {
         <p className="leading-7 [&:not(:first-child)]:mt-6">
           O nosso mapa de calor interativo, construído com a API do Google Maps,
           permite aos usuários visualizar a localização e a frequência das
-          ocorrências registradas, oferecendo uma ferramenta poderosa para
-          cidadãos, acadêmicos e instituições que buscam compreender e atuar na
-          realidade da violência urbana. As funcionalidades do aplicativo
-          incluem a capacidade de filtrar dados por data, localidade e tipo de
-          incidente, além de exibir estatísticas resumidas e detalhes sobre os
-          incidentes mais recentes.
+          ocorrências registradas, oferecendo uma ferramenta para cidadãos,
+          acadêmicos e instituições que buscam compreender e atuar na realidade
+          da violência urbana. As funcionalidades do aplicativo incluem a
+          capacidade de filtrar dados por data, localidade e tipo de incidente,
+          além de exibir estatísticas resumidas e detalhes sobre os incidentes
+          mais recentes.
         </p>
 
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          O Patrol Analytics é desenvolvido com Next.js no frontend e Django no
-          backend, garantindo uma experiência fluida e responsiva para todos os
-          usuários. Nosso compromisso com a transparência e o acesso à
-          informação é refletido na nossa escolha por manter o projeto
-          inteiramente open-source.
+          O Patrol Analytics é desenvolvido com as tecnologias mais avançadas
+          dos ecosistemas das linguaguens Python e Typescript, garantindo uma
+          experiência fluida e responsiva para todos os usuários. Nosso
+          compromisso com a transparência e o acesso à informação é refletido na
+          nossa escolha por manter o projeto inteiramente open-source.
         </p>
 
         <p className="leading-7 [&:not(:first-child)]:mt-6">

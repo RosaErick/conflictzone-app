@@ -41,7 +41,7 @@ export function MapConfigCard({ mapConfig, updateConfig }: MapConfigProps) {
     updateConfig({ maxIntensity: +e.target.value });
 
   return (
-    <Card className="w-[350px]">
+    <Card className="max-w-xl">
       <CardHeader>
         <CardTitle>Opções do Mapa</CardTitle>
         <CardDescription>

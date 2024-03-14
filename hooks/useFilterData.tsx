@@ -19,13 +19,15 @@ export const useFilteredData = (filters: FilterValues) => {
     return filtersToApply;
   }
 
+  console.log("filters", filters);
+
   const fetcher = async (url: string) => {
     const queryParams = new URLSearchParams(
       verifyFilters(filters) as any
     ).toString();
 
     const response = await fetch(
-      `http://localhost:8001/fogo_cruzado/occurrences/?${queryParams}`,
+      `http://127.0.0.1:8000/fogo_cruzado/occurrences/?${queryParams}`,
       {
         method: "GET",
         headers: {
@@ -43,7 +45,7 @@ export const useFilteredData = (filters: FilterValues) => {
   };
 
   const data = useSWR(
-    `http://localhost:8001/fogo_cruzado/occurrences/`,
+    `http://127.0.0.1:8000/fogo_cruzado/occurrences/`,
     fetcher,
     { revalidateOnFocus: false, revalidateOnReconnect: false }
   );

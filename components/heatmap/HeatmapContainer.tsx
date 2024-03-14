@@ -12,9 +12,12 @@ import { RocketIcon } from "@radix-ui/react-icons";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import SummaryStatisticsPanel from "../SummaryStatisticsPanel";
 import { DetailedOccurrenceTable } from "../tables/DetailedOccurenceTable";
-import BarChart from "../charts/BarChart";
 import { BarChartCard } from "../BarChartCard";
 import { PieChartCard } from "../PieChartCard";
+import { LineChartCard } from "../LineChartCard";
+import TrendOverTime from "../charts/TrendOverTime";
+import IncidentsByTimeOfDay from "../charts/IncidentsByTimeOfDay";
+import IncidentsHeatMap from "../charts/IncidentsHeatMap";
 
 const HeatmapContainer = () => {
   const { filters } = useFilter();
@@ -23,7 +26,7 @@ const HeatmapContainer = () => {
 
   return (
     <>
-      <div className="flex justify-center p-5 gap-4 flex-wrap">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10">
         <FilterForm />
         <MapConfigCard mapConfig={mapConfig} updateConfig={updateConfig} />
       </div>
@@ -42,22 +45,35 @@ const HeatmapContainer = () => {
       ) : error ? (
         <div>Error: {error.message}</div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <Heatmap data={occurrences || []} mapConfig={mapConfig} />
-
-          <div>
+        <div className="flex flex-col items-start justify-between p-5 mt-10">
+          <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-3xl">
+            Mapa de Calor
+          </h1>
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-1 gap-4 w-full">
+            <Heatmap data={occurrences || []} mapConfig={mapConfig} />
+          </div>
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-1 gap-4 w-full">
             <SummaryStatisticsPanel occurrences={occurrences || []} />
           </div>
+
+          <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-3xl mt-10">
+            Gráficos e Tabelas
+          </h1>
           <div
             className="col-span-2
-          grid grid-cols-1 lg:grid-cols-2 gap-4
+          grid grid-cols-1 lg:grid-cols-2 gap-4 w-full
             "
           >
             <BarChartCard data={occurrences || []} />
             <PieChartCard data={occurrences || []} />
-          </div>
 
-          <div className="col-span-2">
+            <TrendOverTime data={occurrences || []} />
+            <IncidentsByTimeOfDay data={occurrences || []} />
+          </div>
+          <div className="w-full mt-10">
+            <IncidentsHeatMap data={occurrences || []} />
+          </div>
+          <div className="col-span-2 mt-30">
             <h3 className="font-semibold mb-2 ">Ocorrências Detalhadas</h3>
             <DetailedOccurrenceTable occurrences={occurrences || []} />
           </div>

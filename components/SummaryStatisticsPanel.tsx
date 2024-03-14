@@ -52,7 +52,7 @@ const SummaryStatisticsPanel: React.FC<SummaryStatisticsProps> = ({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Estatísticas Resumidas</CardTitle>
+        <CardTitle>Ocorrências Resumidas </CardTitle>
         <CardDescription>
           Veja estatísticas resumidas sobre os dados
         </CardDescription>
@@ -62,11 +62,14 @@ const SummaryStatisticsPanel: React.FC<SummaryStatisticsProps> = ({
           <h4 className="font-semibold mb-2">Filtros Aplicados:</h4>
 
           <p>Total de ocorrências encontradas: {occurrences.length}</p>
-          <span className="font-semibold">
-            {formatDateDisplay(filters.initialdate)} ~{" "}
-            {formatDateDisplay(filters.finaldate)}
-          </span>
-          <ul className="list-disc list-inside">
+          <p>
+            Período:{" "}
+            <span className="font-semibold">
+              {formatDateDisplay(filters.initialdate)} ~{" "}
+              {formatDateDisplay(filters.finaldate)}
+            </span>
+          </p>
+          <ul className="list-none list-inside">
             <li>Motivo: {filters.mainReason || "Todos"}</li>
             <li>Tipo de Ocorrência: {filters.typeOccurrence || "Completo"}</li>
           </ul>

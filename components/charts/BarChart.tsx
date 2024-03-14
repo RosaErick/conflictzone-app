@@ -39,11 +39,17 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
         colors={getColor}
         borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
         axisTop={null}
+        tooltip={({ data }) => (
+            <span>
+              {data.city}: {data.occurrences}
+            </span>
+          )}
         axisRight={null}
         axisBottom={{
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 45,
+         
         }}
         axisLeft={{
           tickSize: 5,
