@@ -137,7 +137,6 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
             <p className="text-sm text-gray-600">
               Vítimas: {selectedOccurrence.victims.length}
             </p>
-            {/* Add more details as needed */}
           </div>
         </InfoWindow>
       )}

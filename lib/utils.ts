@@ -73,13 +73,59 @@ export const formatDateDisplay = (dateStr: string): string => {
 };
 
 export function convertToCSV(arr: OccurrenceData[]): string {
-  const array = [Object.keys(arr[0])].concat(arr as any);
+  // Helper function to handle flattening including arrays and nested objects
+  const flatten = (data: any, prefix = ''): Record<string, any> => {
+    const result: Record<string, any> = {};
+    for (const [key, value] of Object.entries(data)) {
+      const pre = prefix.length ? prefix + '.' : '';
+      if (typeof value === 'object' && value !== null && !(value instanceof Date)) {
+        if (Array.isArray(value)) {
+          if (key === 'victims') {
+            // Flatten each victim object and concatenate the 'circumstances', 'qualifications' arrays, etc.
+            result[key] = value.map((victim: any) => {
+              const victimInfo = flatten(victim);
+              // Concatenate nested array values into strings
+              victimInfo.circumstances = victim.circumstances.map((c: any) => c.name).join(';');
+              victimInfo.qualifications = victim.qualifications.map((q: any) => q.name).join(';');
+              // Other arrays can be handled similarly
+              return victimInfo;
+            }).join('|'); // Separate each victim with a pipe character
+          } else {
+            // Other arrays can be simply counted
+            result[key] = value.length;
+          }
+        } else {
+          Object.assign(result, flatten(value, pre + key));
+        }
+      } else {
+        result[pre + key] = value;
+      }
+    }
+    return result;
+  };
 
-  return array
-    .map((it) => {
-      return Object.values(it).toString();
-    })
-    .join("\n");
+  // Flatten each object in the array
+  const flatArray = arr.map(item => flatten(item));
+
+  // Extract headers
+  const headers = Object.keys(flatArray[0]);
+
+  // Map each object to a CSV string
+  const csvRows = flatArray.map(row =>
+    headers.map(fieldName => {
+      // For the victims field, we ensure it is a string and escape any necessary characters
+      if (fieldName === 'victims' && typeof row[fieldName] === 'string') {
+        return `"${row[fieldName].replace(/"/g, '""')}"`;
+      }
+
+      const fieldValue = row[fieldName];
+      if (fieldValue === null || fieldValue === undefined) {
+        return '';
+      }
+
+      return `"${String(fieldValue).replace(/"/g, '""')}"`;
+    }).join(',')
+  );
+
+  return [headers.join(','), ...csvRows].join('\n');
 }
-
-

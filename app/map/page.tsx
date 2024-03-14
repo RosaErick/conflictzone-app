@@ -39,7 +39,7 @@ export type OccurrenceData = {
     name: string;
     id: string;
   };
-  // ... other fields
+  
 };
 
 export default function Page() {

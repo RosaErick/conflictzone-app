@@ -17,6 +17,7 @@ import { PieChartCard } from "../PieChartCard";
 import TrendOverTime from "../charts/TrendOverTime";
 import IncidentsByTimeOfDay from "../charts/IncidentsByTimeOfDay";
 import IncidentsHeatMap from "../charts/IncidentsHeatMap";
+import ExportButton from "../buttons/ExportButton";
 
 const HeatmapContainer = () => {
   const { filters } = useFilter();
@@ -75,6 +76,14 @@ const HeatmapContainer = () => {
           <div className="col-span-2 mt-30">
             <h3 className="font-semibold mb-2 ">Ocorrências Detalhadas</h3>
             <DetailedOccurrenceTable occurrences={occurrences || []} />
+          </div>
+          <div
+            className=" mt-30
+                flex justify-end
+                w-full
+          "
+          >
+            <ExportButton occurrenceData={occurrences || []} />
           </div>
         </div>
       )}

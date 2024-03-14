@@ -102,7 +102,6 @@ export const columns: ColumnDef<OccurrenceData>[] = [
   },
   {
     id: "clippings",
-
     header: "Recortes",
     accessorFn: (row) =>
       row.context_info.clippings.map((clipping) => clipping.name).join(", "),
