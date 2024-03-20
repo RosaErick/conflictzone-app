@@ -63,7 +63,7 @@ const TrendOverTime: React.FC<TrendOverTimeProps> = ({ data }) => {
         enablePoints={false}
         enableGridX={false}
         enableGridY={true}
-        colors={{ scheme: "set1" }}
+        colors={{ scheme: "set3" }}
         useMesh={true}
         animate={true}
       />

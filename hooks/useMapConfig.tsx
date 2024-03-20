@@ -11,7 +11,7 @@ interface MapConfig {
 const defaultConfig: MapConfig = {
   radius: 12,
   opacity: 1,
-  maxIntensity: 0,
+  maxIntensity: 500,
   showMarkers: false,
 };
 

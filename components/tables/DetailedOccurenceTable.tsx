@@ -248,7 +248,7 @@ export function DetailedOccurrenceTable({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border p-2">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

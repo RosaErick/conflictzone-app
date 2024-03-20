@@ -43,7 +43,7 @@ const HeatmapContainer = () => {
       ) : error ? (
         <div>Error: {error.message}</div>
       ) : (
-        <div className="flex flex-col items-start justify-between p-5 mt-10">
+        <div className="flex flex-col items-start justify-between p-5 mt-10 ">
           <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-3xl">
             Mapa de Calor
           </h1>
@@ -71,10 +71,10 @@ const HeatmapContainer = () => {
           <div className="w-full mt-10">
             <IncidentsHeatMap data={occurrences || []} />
           </div>
-          <div className="col-span-2 mt-30">
-            <h3 className="font-semibold mb-2 ">Ocorrências Detalhadas</h3>
-            <DetailedOccurrenceTable occurrences={occurrences || []} />
-          </div>
+
+          <h3 className="font-semibold mb-2 ">Ocorrências Detalhadas</h3>
+          <DetailedOccurrenceTable occurrences={occurrences || []} />
+
           <div
             className=" mt-30
                 flex justify-end

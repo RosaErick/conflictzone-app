@@ -76,6 +76,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
           radius: mapConfig.radius,
           dissipating: true,
           opacity: mapConfig.opacity,
+          maxIntensity: mapConfig.maxIntensity,
         });
       } else {
         heatmapRef.current.setOptions({

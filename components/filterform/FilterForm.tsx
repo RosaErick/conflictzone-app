@@ -1,5 +1,5 @@
 // Inside the FilterForm component
-import * as React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,9 +22,9 @@ import { useFilter } from "./provider";
 import { oneYearAgo, todayDate } from "@/lib/utils";
 
 export function FilterForm() {
-  const { setFilters, refetch } = useFilter();
+  const { setFilters } = useFilter();
 
-  const [localFilters, setLocalFilters] = React.useState({
+  const [localFilters, setLocalFilters] = useState({
     initialdate: oneYearAgo(),
     finaldate: todayDate(),
     mainReason: "Todos",
