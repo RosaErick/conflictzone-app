@@ -43,7 +43,7 @@ export function FilterForm() {
   };
 
   return (
-    <Card className="max-w-screen-lg">
+    <Card className="max-w-screen-lg w-full">
       <CardHeader>
         <CardTitle>Filtrar dados</CardTitle>
         <CardDescription>

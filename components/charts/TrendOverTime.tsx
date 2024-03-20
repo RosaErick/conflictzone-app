@@ -42,7 +42,6 @@ const TrendOverTime: React.FC<TrendOverTimeProps> = ({ data }) => {
         xFormat="time:%Y-%m-%d"
         yScale={{ type: "linear", min: "auto", max: "auto", stacked: false }}
         axisTop={null}
-        axisRight={null}
         axisBottom={{
           format: "%b  %Y",
 
