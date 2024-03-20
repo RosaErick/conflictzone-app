@@ -8,6 +8,7 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { OccurrenceData } from "../../app/map/page";
 import { formatDate, formatTime } from "@/lib/utils";
+import HeatmapInfoWindowContent from "../modals/HeatmapInfoWindowContent";
 
 type HeatmapProps = {
   data: OccurrenceData[];
@@ -56,7 +57,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
     useState<OccurrenceData | null>(null);
   const heatmapRef = useRef<google.maps.visualization.HeatmapLayer | null>(
     null
-  );
+  );  
   console.log("data on heatmap", data);
   console.log("selectedOccurrence", selectedOccurrence);
   console.log("mapConfig on heatmapcomponent", mapConfig);
@@ -119,26 +120,9 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
           }}
           onCloseClick={() => setSelectedOccurrence(null)}
         >
-          <div className="p-4 bg-white rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold text-gray-700">
-              Detalhes da Ocorrência
-            </h2>
-            <p className="text-sm text-gray-600">
-              Data: {formatDate(selectedOccurrence.date)}
-            </p>
-            <p className="text-sm text-gray-600">
-              Hora: {formatTime(selectedOccurrence.date)}
-            </p>
-            <p className="text-sm text-gray-600">
-              Endereço: {selectedOccurrence.address}
-            </p>
-            <p className="text-sm text-gray-600">
-              Motivo: {selectedOccurrence.context_info.mainReason.name}
-            </p>
-            <p className="text-sm text-gray-600">
-              Vítimas: {selectedOccurrence.victims.length}
-            </p>
-          </div>
+        <HeatmapInfoWindowContent
+          occurrence={selectedOccurrence}
+        />
         </InfoWindow>
       )}
     </GoogleMap>
