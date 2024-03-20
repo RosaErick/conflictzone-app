@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { FilterForm } from "@/components/filterform/FilterForm";
 import { useFilter } from "@/components/filterform/provider";
-import { useFilteredData } from "@/hooks/useFilterData";
 import { ProgressLoadingMap } from "../PogressLoadingMap";
 import Heatmap from "./Heatmap";
 import { MapConfigCard } from "./MapConfigCard";
@@ -20,8 +19,7 @@ import IncidentsHeatMap from "../charts/IncidentsHeatMap";
 import ExportButton from "../buttons/ExportButton";
 
 const HeatmapContainer = () => {
-  const { filters } = useFilter();
-  const { data: occurrences, loading, error } = useFilteredData(filters);
+  const { data: occurrences, loading, error } = useFilter();
   const { mapConfig, updateConfig } = useMapConfig();
 
   return (
@@ -35,7 +33,7 @@ const HeatmapContainer = () => {
           {" "}
           <Alert className="max-w-[450px] w-full">
             <RocketIcon className="h-4 w-4" />
-            <AlertTitle>Carregando o mapa!</AlertTitle>
+            <AlertTitle>Carregando Dados!</AlertTitle>
             <AlertDescription>
               Este projeto é um projeto de pesquisa em desenvolvimento.
             </AlertDescription>

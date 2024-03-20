@@ -81,13 +81,6 @@ export const columns: ColumnDef<OccurrenceData>[] = [
   },
 
   {
-    id: "vitimas",
-    header: "Vítimas",
-    accessorFn: (row) => row.victims.length,
-    cell: ({ getValue }) => getValue() ?? "Não",
-    sortingFn: "basic",
-  },
-  {
     id: "Unidade Policial",
     header: "Unidade Policial",
     accessorFn: (row) => row.context_info.policeUnit,
@@ -101,7 +94,8 @@ export const columns: ColumnDef<OccurrenceData>[] = [
         .join(", "),
   },
   {
-    id: "clippings",
+    accessorKey: "context_info.clippings",
+    id: "Recortes",
     header: "Recortes",
     accessorFn: (row) =>
       row.context_info.clippings.map((clipping) => clipping.name).join(", "),
@@ -112,8 +106,79 @@ export const columns: ColumnDef<OccurrenceData>[] = [
     accessorFn: (row) => row.context_info.massacre,
     cell: ({ getValue }) => (getValue() ? "Sim" : "Não"),
   },
+  {
+    id: "vitimas",
+    header: "Vítimas",
+    accessorFn: (row) => row.victims.length,
+    cell: ({ getValue }) => getValue() ?? "Não",
+    sortingFn: "basic",
+  },
+  {
+    id: "civis mortos",
 
-  // Add more columns as needed
+    header: "Civis Mortos",
+    accessorFn: (row) =>
+      row.victims.filter(
+        (victim) =>
+          victim.personType === "Civilian" && victim.situation === "Dead"
+      ).length,
+    cell: ({ getValue }) => getValue() ?? "Não",
+    sortingFn: "basic",
+  },
+  {
+    id: "civis feridos",
+    header: "Civis Feridos",
+    accessorFn: (row) =>
+      row.victims.filter(
+        (victim) =>
+          victim.personType === "Civilian" && victim.situation === "Wounded"
+      ).length,
+    cell: ({ getValue }) => getValue() ?? "Não",
+    sortingFn: "basic",
+  },
+  {
+    id: "agentes mortos",
+    header: "Agentes Mortos",
+    accessorFn: (row) =>
+      row.victims.filter(
+        (victim) => victim.personType === "Agent" && victim.situation === "Dead"
+      ).length,
+    cell: ({ getValue }) => getValue() ?? "Não",
+    sortingFn: "basic",
+  },
+  {
+    id: "agentes feridos",
+    header: "Agentes Feridos",
+    accessorFn: (row) =>
+      row.victims.filter(
+        (victim) =>
+          victim.personType === "Agent" && victim.situation === "Wounded"
+      ).length,
+    cell: ({ getValue }) => getValue() ?? "Não",
+    sortingFn: "basic",
+  },
+  {
+    id: "homens mortos",
+    header: "Homens Mortos",
+    accessorFn: (row) =>
+      row.victims.filter(
+        (victim) =>
+          victim.genre.name === "Homem cis" && victim.situation === "Dead"
+      ).length,
+    cell: ({ getValue }) => getValue() ?? "Não",
+    sortingFn: "basic",
+  },
+  {
+    id: "mulheres mortas",
+    header: "Mulheres Mortas",
+    accessorFn: (row) =>
+      row.victims.filter(
+        (victim) =>
+          victim.genre.name === "Mulher cis" && victim.situation === "Dead"
+      ).length,
+    cell: ({ getValue }) => getValue() ?? "Não",
+    sortingFn: "basic",
+  },
 ];
 
 export function DetailedOccurrenceTable({

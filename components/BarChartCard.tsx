@@ -26,7 +26,7 @@ export const BarChartCard: React.FC<{ data: OccurrenceData[] }> = ({
     .sort((a, b) => b.occurrences - a.occurrences)
     .slice(0, topN);
 
-  return (
+   return (
     <div>
       <h2 className="scroll-m-20 text-1xl font-bold tracking-tight lg:text-1xl mt-10 text-center">
         Ocorrências por bairro

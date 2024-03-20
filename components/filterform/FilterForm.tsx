@@ -1,4 +1,4 @@
-"use client";
+// Inside the FilterForm component
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,16 +19,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useFilter } from "./provider";
-import { useFilteredData } from "@/hooks/useFilterData";
+import { oneYearAgo, todayDate } from "@/lib/utils";
 
 export function FilterForm() {
-  const { updateFilter, filters } = useFilter();
-  const { refetch } = useFilteredData(filters);
+  const { setFilters, refetch } = useFilter();
+
+  const [localFilters, setLocalFilters] = React.useState({
+    initialdate: oneYearAgo(),
+    finaldate: todayDate(),
+    mainReason: "Todos",
+    typeOccurrence: "Completo",
+  });
+
+  // Handle form field changes
+  const handleChange = (name: any, value: any) => {
+    setLocalFilters((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    refetch();
-    return;
+    // Update the global filters with local filter state then refetch data
+    setFilters(localFilters);
   };
 
   return (
@@ -43,25 +54,28 @@ export function FilterForm() {
         <CardContent>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="Date">Data</Label>
+              <Label htmlFor="initialdate">Data Inicial</Label>
               <Input
                 id="initialdate"
                 type="date"
-                placeholder="Data Inicial"
-                onChange={(e) => updateFilter("initialdate", e.target.value)}
+                value={localFilters.initialdate}
+                onChange={(e) => handleChange("initialdate", e.target.value)}
               />
+              <Label htmlFor="finaldate">Data Final</Label>
               <Input
                 id="finaldate"
                 type="date"
-                placeholder="Data Final"
-                onChange={(e) => updateFilter("finaldate", e.target.value)}
+                value={localFilters.finaldate}
+                onChange={(e) => handleChange("finaldate", e.target.value)}
               />
             </div>
             <div className="flex flex-col space-y-1.5 gap-2">
               <Label htmlFor="mainReason">Motivos</Label>
               <Select
-                onValueChange={(value) => updateFilter("mainReason", value)}
+                value={localFilters.mainReason}
+                onValueChange={(value) => handleChange("mainReason", value)}
               >
+                {/* Select items... */}{" "}
                 <SelectTrigger id="mainReason">
                   <SelectValue placeholder="Selecione um motivo" />
                 </SelectTrigger>
@@ -82,13 +96,15 @@ export function FilterForm() {
                     Não identificado
                   </SelectItem>
                   <SelectItem value="Todos">Todos</SelectItem>
-                </SelectContent>
+                </SelectContent>{" "}
               </Select>
 
               <Label htmlFor="typeOccurrence">Tipo de Ocorrência</Label>
               <Select
-                onValueChange={(value) => updateFilter("typeOccurrence", value)}
+                value={localFilters.typeOccurrence}
+                onValueChange={(value) => handleChange("typeOccurrence", value)}
               >
+                {/* Select items... */}
                 <SelectTrigger id="typeOccurrence">
                   <SelectValue placeholder="Selecione um tipo" />
                 </SelectTrigger>
@@ -105,23 +121,18 @@ export function FilterForm() {
           <Button
             variant="outline"
             type="reset"
-            onClick={() => {
-              updateFilter("initialdate", "");
-              updateFilter("finaldate", "");
-              updateFilter("mainReason", "");
-              updateFilter("typeOccurrence", "");
-            }}
+            onClick={() =>
+              setLocalFilters({
+                initialdate: oneYearAgo(),
+                finaldate: todayDate(),
+                mainReason: "Todos",
+                typeOccurrence: "Completo",
+              })
+            }
           >
             Cancelar
           </Button>
-          <Button
-            type="submit"
-            disabled={
-              !filters.initialdate || !filters.finaldate || !filters.mainReason
-            }
-          >
-            Filtrar
-          </Button>
+          <Button type="submit">Filtrar</Button>
         </CardFooter>
       </form>
     </Card>

@@ -1,6 +1,8 @@
 "use client";
-import { oneYearAgo, todayDate } from "@/lib/utils";
 import React, { createContext, useContext, useState } from "react";
+import { oneYearAgo, todayDate } from "@/lib/utils";
+import useSWR from "swr";
+import { OccurrenceData } from "@/app/map/page";
 
 export interface FilterValues {
   initialdate: string;
@@ -11,12 +13,27 @@ export interface FilterValues {
 
 interface FilterContextType {
   filters: FilterValues;
-  updateFilter: (name: keyof FilterValues, value: string) => void;
+  setFilters: React.Dispatch<React.SetStateAction<FilterValues>>;
+  data: OccurrenceData[];
+  loading: boolean;
+  error: any;
+  refetch: () => void;
 }
 
 const FilterContext = createContext<FilterContextType | null>(null);
 
 export const useFilter = () => useContext(FilterContext) as FilterContextType;
+
+const fetcher = async (url: string) => {
+  const response = await fetch(url, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!response.ok)
+    throw new Error(`Error fetching data: ${response.statusText}`);
+  const data = await response.json();
+  return data.occurrences as OccurrenceData[];
+};
 
 export function FilterProvider({ children }: { children: React.ReactNode }) {
   const [filters, setFilters] = useState<FilterValues>({
@@ -26,12 +43,38 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
     typeOccurrence: "Completo",
   });
 
-  const updateFilter = (name: keyof FilterValues, value: string) => {
-    setFilters((prev) => ({ ...prev, [name]: value }));
+  const verifyFilters = (filters: FilterValues) => {
+    let filtersToApply: any = { ...filters };
+    if (filtersToApply.mainReason === "Todos") filtersToApply.mainReason = "";
+    if (filtersToApply.typeOccurrence === "Completo")
+      filtersToApply.typeOccurrence = "";
+    return filtersToApply;
   };
 
+  const queryParams = new URLSearchParams(verifyFilters(filters)).toString();
+
+  const {
+    data = [],
+    error,
+    isValidating,
+    mutate,
+  } = useSWR(
+    `http://127.0.0.1:8000/fogo_cruzado/occurrences/?${queryParams}`,
+    fetcher,
+    { revalidateOnFocus: false, revalidateOnReconnect: false }
+  );
+
   return (
-    <FilterContext.Provider value={{ filters, updateFilter }}>
+    <FilterContext.Provider
+      value={{
+        filters,
+        setFilters,
+        data,
+        loading: isValidating,
+        error,
+        refetch: mutate,
+      }}
+    >
       {children}
     </FilterContext.Provider>
   );

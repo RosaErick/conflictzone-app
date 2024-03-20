@@ -72,7 +72,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
         heatmapRef.current = new google.maps.visualization.HeatmapLayer({
           data: heatmapData,
           map: map,
-          gradient: gradient,
+         // gradient: gradient,
           radius: mapConfig.radius,
           dissipating: true,
           opacity: mapConfig.opacity,
@@ -81,7 +81,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
         heatmapRef.current.setOptions({
           data: heatmapData,
           maxIntensity: mapConfig.maxIntensity,
-          gradient: gradient,
+          //gradient: gradient,
           radius: mapConfig.radius,
           dissipating: true,
           opacity: mapConfig.opacity,
