@@ -3,13 +3,11 @@
 import React from "react";
 import Heatmap from "./Heatmap";
 import TrendOverTime from "../charts/TrendOverTime";
-import IncidentsByTimeOfDay from "../charts/IncidentsByTimeOfDay";
 import IncidentsHeatMap from "../charts/IncidentsHeatMap";
 import ExportButton from "../buttons/ExportButton";
 import SummaryStatisticsPanel from "../SummaryStatisticsPanel";
 import DemographicDistributionChart from "../charts/DemographicDistributionChart";
 import { FilterForm } from "@/components/filterform/FilterForm";
-import { useFilter } from "@/components/filterform/provider";
 import { ProgressLoadingMap } from "../PogressLoadingMap";
 import { MapConfigCard } from "./MapConfigCard";
 import { useMapConfig } from "@/hooks/useMapConfig";
@@ -23,6 +21,7 @@ import { CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { useFilter } from "@/hooks/userFilter";
 
 const HeatmapContainer = () => {
   const { data: occurrences, loading, error } = useFilter();

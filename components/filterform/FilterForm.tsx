@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useFilter } from "./provider";
+import { useFilter } from "../../hooks/userFilter";
 import { oneYearAgo, todayDate } from "@/lib/utils";
 
 export function FilterForm() {

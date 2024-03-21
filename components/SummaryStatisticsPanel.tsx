@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SummaryStaticsTable } from "./tables/SummaryStaticsTable";
-import { useFilter } from "./filterform/provider";
+import { useFilter } from "../hooks/userFilter";
 
 interface SummaryStatisticsProps {
   occurrences: OccurrenceData[];

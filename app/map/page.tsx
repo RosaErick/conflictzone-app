@@ -1,6 +1,7 @@
 "use client";
-import { FilterProvider } from "@/components/filterform/provider";
+
 import HeatmapContainer from "@/components/heatmap/HeatmapContainer";
+import { FilterProvider } from "@/hooks/userFilter";
 
 export type IDNamePair = {
   id: string;
