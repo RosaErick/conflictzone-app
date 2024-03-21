@@ -82,7 +82,7 @@ const HeatmapVictimContent = ({ victims }: { victims: VictimDetails[] }) => {
   return (
     <div>
       <h3 className="text-md font-semibold text-gray-700">
-        Vítimas Detalhadas:
+        Vítimas:
       </h3>
       {victims?.length > 0 ? (
         <div className="space-y-4">

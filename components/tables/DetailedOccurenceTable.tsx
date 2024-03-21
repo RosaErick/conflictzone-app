@@ -211,7 +211,8 @@ export function DetailedOccurrenceTable({
   });
 
   return (
-    <div className="w-full">
+  <div className="w-full">
+
       <div className="flex items-center py-4">
         <Input
           placeholder="Filtre as ocorrências por cidade, bairro e local..."
@@ -248,8 +249,8 @@ export function DetailedOccurrenceTable({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border p-2">
-        <Table>
+      <div className="rounded-md border p-2 h-[80vh] overflow-y-auto">
+        <Table >
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
