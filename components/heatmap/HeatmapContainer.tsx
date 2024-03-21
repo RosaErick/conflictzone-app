@@ -74,10 +74,7 @@ const HeatmapContainer = () => {
           </div>
           <Collapsible className="w-full mt-10 mb-10">
             <CollapsibleTrigger>
-              <h1
-                className="    mb-5
-              flex justify-start items-center gap-5 scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-3xl"
-              >
+              <h1 className="mb-5 flex justify-start items-center gap-5 scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-3xl">
                 Ocorrências
                 <svg
                   width="15"

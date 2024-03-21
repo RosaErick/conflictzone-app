@@ -15,36 +15,28 @@ export default async function About() {
         </p>
 
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          O nosso mapa de calor interativo, construído com a API do Google Maps,
-          permite aos usuários visualizar a localização e a frequência das
-          ocorrências registradas, oferecendo uma ferramenta para cidadãos,
+          A ideia base do projeto é servir como uma ferramenta para cidadãos,
           acadêmicos e instituições que buscam compreender e atuar na realidade
-          da violência urbana. As funcionalidades do aplicativo incluem a
-          capacidade de filtrar dados por data, localidade e tipo de incidente,
-          além de exibir estatísticas resumidas e detalhes sobre os incidentes
-          mais recentes.
-        </p>
-
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
-          O Patrol Analytics é desenvolvido com as tecnologias mais avançadas
-          dos ecosistemas das linguaguens Python e Typescript, garantindo uma
-          experiência fluida e responsiva para todos os usuários. Nosso
-          compromisso com a transparência e o acesso à informação é refletido na
-          nossa escolha por manter o projeto inteiramente open-source.
+          da violência urbana. As funcionalidades incluem a capacidade de
+          filtrar dados por data, localidade e tipo de incidente, além de exibir
+          estatísticas resumidas, detalhes sobre os incidentes mais recentes,
+          mapas interativos e a possibilidade de exportar dados para análise
+          mais aprofundada. O projeto também está em constante evolução, com
+          novas funcionalidades e melhorias sendo adicionadas regularmente.
         </p>
 
         <p className="leading-7 [&:not(:first-child)]:mt-6">
           Este é um projeto vivo, construído em público e para o público.
-          Convidamos a comunidade a contribuir e apoiar o Patrol Analytics de
+          Convidamos a comunidade a contribuir e apoiar de
           diversas formas: através de desenvolvimento de código, feedbacks
-          construtivos ou patrocínio. Para fazer parte dessa iniciativa, visite
+          construtivos e etc. Para fazer parte dessa iniciativa, visite
           nosso repositório no GitHub, contribua com o projeto ou entre em
-          contato para discutir apoio e patrocínio.
+          contato para discutir outras maneiras de apoiar o projeto.
         </p>
       </div>
 
       <div className="flex flex-col items-center justify-center p-5 mt-10 gap-5">
-        <p>Em desenvolvimento... </p>
+        <p>Obrigado pela visita!</p>
         <span>👷‍♂️</span>
         <div className="animate-spin h-6 w-6 rounded-full border-t-2 border-gray-900" />
       </div>

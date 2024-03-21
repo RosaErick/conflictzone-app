@@ -58,7 +58,9 @@ const DemographicDistributionChart: React.FC<
 
   return (
     <div style={{ height: 400 }}>
-      <h2>{title}</h2>
+      <h2 className="scroll-m-20 text-1xl font-bold tracking-tight lg:text-1xl mt-10 text-center">
+        {title}
+      </h2>
       <ResponsivePie
         data={chartData}
         // Rest of the configuration remains the same
