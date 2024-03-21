@@ -9,6 +9,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { OccurrenceData } from "../../app/map/page";
 import { formatDate, formatTime } from "@/lib/utils";
 import HeatmapInfoWindowContent from "../modals/HeatmapInfoWindowContent";
+import { Skeleton } from "../ui/skeleton";
 
 type HeatmapProps = {
   data: OccurrenceData[];
@@ -57,7 +58,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
     useState<OccurrenceData | null>(null);
   const heatmapRef = useRef<google.maps.visualization.HeatmapLayer | null>(
     null
-  );  
+  );
   console.log("data on heatmap", data);
   console.log("selectedOccurrence", selectedOccurrence);
   console.log("mapConfig on heatmapcomponent", mapConfig);
@@ -73,7 +74,7 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
         heatmapRef.current = new google.maps.visualization.HeatmapLayer({
           data: heatmapData,
           map: map,
-         // gradient: gradient,
+          // gradient: gradient,
           radius: mapConfig.radius,
           dissipating: true,
           opacity: mapConfig.opacity,
@@ -120,13 +121,19 @@ const Heatmap: React.FC<HeatmapProps> = ({ data, mapConfig }) => {
           }}
           onCloseClick={() => setSelectedOccurrence(null)}
         >
-        <HeatmapInfoWindowContent
-          occurrence={selectedOccurrence}
-        />
+          <HeatmapInfoWindowContent occurrence={selectedOccurrence} />
         </InfoWindow>
       )}
     </GoogleMap>
-  ) : null;
+  ) : (
+    <div className="flex flex-col space-y-3">
+      <Skeleton className="rounded-xl" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
+      </div>
+    </div>
+  );
 };
 
 export default React.memo(Heatmap);
