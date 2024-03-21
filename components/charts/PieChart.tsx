@@ -34,6 +34,8 @@ const PieChart = ({ data }: PieChartProps) => {
         arcLinkLabelsSkipAngle={10}
         arcLinkLabelsThickness={2}
         arcLabelsSkipAngle={10}
+        animate={true}
+
         tooltip={({ datum }) => (
           <span>
             {datum.label}: {datum.value}

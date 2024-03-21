@@ -50,3 +50,8 @@
     --tw-ring-color: 346.8 77.2% 49.8%;
   }
 }
+
+
+.bg-background {
+  background-color: hsl(var(--background));
+}

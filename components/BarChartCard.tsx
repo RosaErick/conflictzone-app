@@ -28,9 +28,7 @@ export const BarChartCard: React.FC<{ data: OccurrenceData[] }> = ({
 
    return (
     <div>
-      <h2 className="scroll-m-20 text-1xl font-bold tracking-tight lg:text-1xl mt-10 text-center">
-        Ocorrências por bairro
-      </h2>
+   
       <BarChart data={graphData} />
     </div>
   );

@@ -31,19 +31,17 @@ export function FilterForm() {
     typeOccurrence: "Completo",
   });
 
-  // Handle form field changes
   const handleChange = (name: any, value: any) => {
     setLocalFilters((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Update the global filters with local filter state then refetch data
     setFilters(localFilters);
   };
 
   return (
-    <Card className="max-w-screen-lg w-full">
+    <Card className="m-5">
       <CardHeader>
         <CardTitle>Filtrar dados</CardTitle>
         <CardDescription>

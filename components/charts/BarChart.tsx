@@ -26,6 +26,9 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
 
   return (
     <div style={{ height: 400, width: "100%" }}>
+      <h2 className="scroll-m-20 text-1xl font-bold tracking-tight lg:text-1xl mt-10 text-center">
+        Ocorrências por bairro
+      </h2>
       <ResponsiveBar
         data={data}
         keys={["occurrences"]}

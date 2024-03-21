@@ -41,7 +41,7 @@ export function MapConfigCard({ mapConfig, updateConfig }: MapConfigProps) {
     updateConfig({ maxIntensity: +e.target.value });
 
   return (
-    <Card className="w-full h-full p-0">
+    <div className="w-full h-full p-0 ">
       <CardHeader>
         <CardTitle>Opções do Mapa</CardTitle>
         <CardDescription>
@@ -147,6 +147,6 @@ export function MapConfigCard({ mapConfig, updateConfig }: MapConfigProps) {
         </div>
       </CardContent>
       <CardFooter className="flex justify-between"></CardFooter>
-    </Card>
+    </div>
   );
 }

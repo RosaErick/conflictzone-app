@@ -26,7 +26,7 @@ const processDemographicData = (
         key = victim.genre.name; // Assuming victim.genre exists and has a name property
       }
 
-      if (title === "Distribuição por Raça") {
+      if (title === "Distribuição por Cor") {
         key = victim.race; // Assuming victim has a race property
       }
 
