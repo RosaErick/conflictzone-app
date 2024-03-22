@@ -28,7 +28,9 @@ export const useFilter = () => useContext(FilterContext) as FilterContextType;
 const fetcher = async (url: string) => {
   const response = await fetch(url, {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   if (!response.ok)
     throw new Error(`Error fetching data: ${response.statusText}`);
