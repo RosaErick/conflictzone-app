@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 import { oneYearAgo, todayDate } from "@/lib/utils";
 import useSWR from "swr";
 import { OccurrenceData } from "@/app/map/page";
+import { APP_API_URL_PROD } from "@/lib/constants";
 
 export interface FilterValues {
   initialdate: string;
@@ -58,11 +59,10 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
     error,
     isValidating,
     mutate,
-  } = useSWR(
-    `http://127.0.0.1:8000/fogo_cruzado/occurrences/?${queryParams}`,
-    fetcher,
-    { revalidateOnFocus: false, revalidateOnReconnect: false }
-  );
+  } = useSWR(`${APP_API_URL_PROD}/occurrences/?${queryParams}`, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
 
   return (
     <FilterContext.Provider
