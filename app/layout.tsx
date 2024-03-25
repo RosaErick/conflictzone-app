@@ -50,7 +50,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="antialiased max-w-7xl mb-40 flex flex-col md:flex-row mx-4  lg:mx-auto">
+          <div className="antialiased max-w-7xl  flex flex-col md:flex-row mx-4 mb-4 lg:mx-auto">
             <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
               <Nav />
 

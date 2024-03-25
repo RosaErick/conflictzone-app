@@ -1,6 +1,27 @@
 export default function Home() {
   return (
-    <section className="flex min-h-screen flex-col max-w-4xl self-center items-center justify-between p-5 mt-20">
+    <section className="flex min-h-screen flex-col max-w-4xl self-center items-center justify-start gap-20 p-5 mt-20">
+      <div className="items-center">
+        <p className="leading-7 [&:not(:first-child)]:mt-6">
+          Patrol Analytics é uma iniciativa aberta e colaborativa dedicada a
+          fornecer visualizações e análises avançadas das ocorrências de
+          violência armada no Rio de Janeiro. Criado para propiciar um
+          entendimento mais aprofundado e objetivo sobre os incidentes de
+          segurança pública, este projeto se fundamenta na mais extensa base de
+          dados sobre violência armada da América Latina, disponibilizada pela
+          API do{" "}
+          <a
+            className="text-blue-500 hover:text-blue-600 hover:underline"
+            href="https://fogocruzado.org.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Fogo Cruzado
+          </a>
+          .
+        </p>
+      </div>
+
       <div className="mb-32 grid text-center lg:max-w-6xl lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left">
         <a
           href="https://github.com/RosaErick/patrolAnalytics-app"
