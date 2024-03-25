@@ -1,4 +1,4 @@
 
 
-export const APP_API_URL_PROD ="http://137.184.134.60:8000"
+export const APP_API_URL_PROD ="https://analyticsapi.duckdns.org"
 export const APP_API_URL_DEV = ""
